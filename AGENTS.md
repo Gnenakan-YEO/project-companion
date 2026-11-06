@@ -34,3 +34,4 @@ use the editor.
 - Order totals are always recomputed server-side from the catalogue (`src/lib/pricing.ts`); why: never trust browser prices.
 - Orders and contact requests are inserted via `createServerFn` in `src/lib/orders.functions.ts` with a publishable client; tables allow anon INSERT only (no reads); why: visitors can submit but never read others' data.
 - Cart state is client-only (React context + localStorage, read in useEffect); why: avoids hydration mismatches.
+- Manager area `/gerant` lives under `_authenticated`; access requires the `admin` row in `user_roles`, checked server-side via `has_role` in `src/lib/admin.functions.ts`; why: roles never come from client data. There is no public signup page — manager accounts are created from the Users panel.
