@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Business contact info lives only in `src/lib/site.ts` and the product catalogue (with prices) only in `src/lib/products.ts`; why: one place to update placeholder data.
+- Order totals are always recomputed server-side from the catalogue (`src/lib/pricing.ts`); why: never trust browser prices.
+- Orders and contact requests are inserted via `createServerFn` in `src/lib/orders.functions.ts` with a publishable client; tables allow anon INSERT only (no reads); why: visitors can submit but never read others' data.
+- Cart state is client-only (React context + localStorage, read in useEffect); why: avoids hydration mismatches.
