@@ -14,7 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_requests: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string
+          name: string
+          phone: string
+          quantity: string | null
+          request_type: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message: string
+          name: string
+          phone: string
+          quantity?: string | null
+          request_type?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string
+          name?: string
+          phone?: string
+          quantity?: string | null
+          request_type?: string
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          address: string
+          commune: string
+          created_at: string
+          customer_name: string
+          email: string | null
+          id: string
+          items: Json
+          notes: string | null
+          phone: string
+          reference: string
+          status: string
+          total_fcfa: number
+        }
+        Insert: {
+          address: string
+          commune: string
+          created_at?: string
+          customer_name: string
+          email?: string | null
+          id?: string
+          items: Json
+          notes?: string | null
+          phone: string
+          reference: string
+          status?: string
+          total_fcfa: number
+        }
+        Update: {
+          address?: string
+          commune?: string
+          created_at?: string
+          customer_name?: string
+          email?: string | null
+          id?: string
+          items?: Json
+          notes?: string | null
+          phone?: string
+          reference?: string
+          status?: string
+          total_fcfa?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
