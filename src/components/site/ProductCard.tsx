@@ -23,15 +23,15 @@ export function ProductCard({ product }: { product: Product }) {
         <img
           src={product.image}
           alt={`${product.name} – ${product.size}`}
-          width={912}
-          height={912}
+          width={1024}
+          height={1024}
           loading="lazy"
           className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </Link>
       <div className="flex flex-1 flex-col p-5">
         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          {product.category} · {product.size}
+          {product.size}
         </p>
         <h3 className="mt-1.5 text-lg font-semibold text-foreground">
           <Link to="/produits/$productId" params={{ productId: product.id }} className="hover:text-primary">{product.name}</Link>

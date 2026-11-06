@@ -9,15 +9,17 @@ export const Route = createFileRoute("/produits/")({
   head: () => ({
     meta: [
       { title: "Nos produits au karité — Maison Karité" },
-      { name: "description", content: "Beurre de karité brut, karité fouetté, baume à lèvres et savon artisanal. Prix en FCFA, livraison à Abidjan." },
+      { name: "description", content: "SHINE et SHINE PROTECTION : pommades au beurre de karité en pots de 50 g et 100 g. Prix en FCFA, livraison à Abidjan." },
       { property: "og:title", content: "Nos produits au karité — Maison Karité" },
-      { property: "og:description", content: "Découvrez notre gamme de produits naturels au beurre de karité." },
+      { property: "og:description", content: "Découvrez les pommades SHINE et SHINE PROTECTION au beurre de karité." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ProduitsPage,
 });
 
-const CATEGORIES = ["Tous", "Beurre brut", "Soins", "Hygiène"] as const;
+const CATEGORIES = ["Tous", "SHINE", "SHINE PROTECTION"] as const;
 
 function ProduitsPage() {
   const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("Tous");
@@ -75,7 +77,7 @@ function ProduitsPage() {
       {list.length === 0 ? (
         <p className="mt-16 text-center text-muted-foreground">Aucun produit ne correspond à votre recherche.</p>
       ) : (
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {list.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
