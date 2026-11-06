@@ -16,8 +16,8 @@ describe("priceCart", () => {
       { productId: "brut-1kg", quantity: 2 },
     ]);
     expect(lines).toHaveLength(1);
-    expect(lines[0].quantity).toBe(3);
-    expect(lines[0].lineTotalFcfa).toBe(24000);
+    expect(lines[0]!.quantity).toBe(3);
+    expect(lines[0]!.lineTotalFcfa).toBe(24000);
   });
 
   it("rejects unknown products", () => {

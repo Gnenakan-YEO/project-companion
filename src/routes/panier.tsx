@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useCart } from "@/lib/cart";
-import { orderSchema } from "@/lib/order-schema";
+import { orderSchema, type OrderInput } from "@/lib/order-schema";
 import { placeOrder } from "@/lib/orders.functions";
 import { findProduct, formatFcfa } from "@/lib/products";
 import { COMMUNES, SITE, whatsappLink } from "@/lib/site";
@@ -30,7 +30,7 @@ type Confirmation = { reference: string; totalFcfa: number; lines: { name: strin
 function PanierPage() {
   const cart = useCart();
   const submit = useServerFn(placeOrder);
-  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof OrderInput, string>>>({});
   const [sending, setSending] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
@@ -49,8 +49,8 @@ function PanierPage() {
       items: cart.items,
     });
     if (!parsed.success) {
-      const errs: Record<string, string> = {};
-      for (const issue of parsed.error.issues) errs[String(issue.path[0])] ??= issue.message;
+      const errs: Partial<Record<keyof OrderInput, string>> = {};
+      for (const issue of parsed.error.issues) errs[issue.path[0] as keyof OrderInput] ??= issue.message;
       setErrors(errs);
       return;
     }
@@ -220,7 +220,7 @@ function PanierPage() {
   );
 }
 
-function Field({ id, label, error, children }: { id: string; label: string; error?: string; children: React.ReactNode }) {
+function Field({ id, label, error, children }: { id: string; label: string; error?: string | undefined; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label}</Label>

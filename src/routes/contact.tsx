@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { contactSchema } from "@/lib/order-schema";
+import { contactSchema, type ContactInput } from "@/lib/order-schema";
 import { sendContactRequest } from "@/lib/orders.functions";
 import { SITE, whatsappLink } from "@/lib/site";
 
@@ -14,7 +14,7 @@ type Search = { type?: "contact" | "devis" };
 
 export const Route = createFileRoute("/contact")({
   validateSearch: (search: Record<string, unknown>): Search =>
-    search.type === "devis" ? { type: "devis" } : {},
+    search["type"] === "devis" ? { type: "devis" } : {},
   head: () => ({
     meta: [
       { title: "Contact & demande de devis — Maison Karité" },
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-type Errors = Partial<Record<string, string>>;
+type Errors = Partial<Record<keyof ContactInput, string>>;
 
 function ContactPage() {
   const search = Route.useSearch();
@@ -51,7 +51,7 @@ function ContactPage() {
     });
     if (!parsed.success) {
       const errs: Errors = {};
-      for (const issue of parsed.error.issues) errs[String(issue.path[0])] ??= issue.message;
+      for (const issue of parsed.error.issues) errs[issue.path[0] as keyof ContactInput] ??= issue.message;
       setErrors(errs);
       return;
     }
@@ -189,7 +189,7 @@ function ContactPage() {
   );
 }
 
-function Field({ id, label, error, children }: { id: string; label: string; error?: string; children: React.ReactNode }) {
+function Field({ id, label, error, children }: { id: string; label: string; error?: string | undefined; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label}</Label>
