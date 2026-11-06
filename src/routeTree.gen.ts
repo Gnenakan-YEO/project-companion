@@ -14,9 +14,11 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as PanierRouteImport } from './routes/panier'
 import { Route as AuthenticatedGerantRouteImport } from './routes/_authenticated/gerant'
 import { Route as ProduitsIndexRouteImport } from './routes/produits.index'
+import { Route as ProduitsProductIdRouteImport } from './routes/produits.$productId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +44,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PanierRoute = PanierRouteImport.update({
   id: '/panier',
   path: '/panier',
@@ -57,14 +64,21 @@ const ProduitsIndexRoute = ProduitsIndexRouteImport.update({
   path: '/produits/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProduitsProductIdRoute = ProduitsProductIdRouteImport.update({
+  id: '/produits/$productId',
+  path: '/produits/$productId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/panier': typeof PanierRoute
   '/gerant': typeof AuthenticatedGerantRoute
+  '/produits/$productId': typeof ProduitsProductIdRoute
   '/produits/': typeof ProduitsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -72,8 +86,10 @@ export interface FileRoutesByTo {
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/panier': typeof PanierRoute
   '/gerant': typeof AuthenticatedGerantRoute
+  '/produits/$productId': typeof ProduitsProductIdRoute
   '/produits': typeof ProduitsIndexRoute
 }
 export interface FileRoutesById {
@@ -83,8 +99,10 @@ export interface FileRoutesById {
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
   '/panier': typeof PanierRoute
   '/_authenticated/gerant': typeof AuthenticatedGerantRoute
+  '/produits/$productId': typeof ProduitsProductIdRoute
   '/produits/': typeof ProduitsIndexRoute
 }
 export interface FileRouteTypes {
@@ -94,8 +112,10 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/auth'
     | '/contact'
+    | '/faq'
     | '/panier'
     | '/gerant'
+    | '/produits/$productId'
     | '/produits/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -103,8 +123,10 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/auth'
     | '/contact'
+    | '/faq'
     | '/panier'
     | '/gerant'
+    | '/produits/$productId'
     | '/produits'
   id:
     | '__root__'
@@ -113,8 +135,10 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/auth'
     | '/contact'
+    | '/faq'
     | '/panier'
     | '/_authenticated/gerant'
+    | '/produits/$productId'
     | '/produits/'
   fileRoutesById: FileRoutesById
 }
@@ -124,7 +148,9 @@ export interface RootRouteChildren {
   AProposRoute: typeof AProposRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
   PanierRoute: typeof PanierRoute
+  ProduitsProductIdRoute: typeof ProduitsProductIdRoute
   ProduitsIndexRoute: typeof ProduitsIndexRoute
 }
 
@@ -165,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/panier': {
       id: '/panier'
       path: '/panier'
@@ -184,6 +217,13 @@ declare module '@tanstack/react-router' {
       path: '/produits'
       fullPath: '/produits/'
       preLoaderRoute: typeof ProduitsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produits/$productId': {
+      id: '/produits/$productId'
+      path: '/produits/$productId'
+      fullPath: '/produits/$productId'
+      preLoaderRoute: typeof ProduitsProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -206,7 +246,9 @@ const rootRouteChildren: RootRouteChildren = {
   AProposRoute: AProposRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
   PanierRoute: PanierRoute,
+  ProduitsProductIdRoute: ProduitsProductIdRoute,
   ProduitsIndexRoute: ProduitsIndexRoute,
 }
 export const routeTree = rootRouteImport
