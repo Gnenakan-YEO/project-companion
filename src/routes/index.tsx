@@ -30,7 +30,7 @@ const ENGAGEMENTS = [
 ];
 
 function Index() {
-  const featured = PRODUCTS.slice(0, 3);
+  const featured = ["brut-250", "fouette-coco", "savon-karite"].map((id) => PRODUCTS.find((p) => p.id === id)!);
   return (
     <>
       {/* Bandeau d'accueil */}

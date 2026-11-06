@@ -42,12 +42,12 @@ function ContactPage() {
     const fd = new FormData(e.currentTarget);
     const parsed = contactSchema.safeParse({
       requestType,
-      name: fd.get("name"),
-      phone: fd.get("phone"),
-      email: fd.get("email"),
+      name: (fd.get("name") ?? ""),
+      phone: (fd.get("phone") ?? ""),
+      email: (fd.get("email") ?? ""),
       company: fd.get("company") ?? "",
       quantity: fd.get("quantity") ?? "",
-      message: fd.get("message"),
+      message: (fd.get("message") ?? ""),
     });
     if (!parsed.success) {
       const errs: Errors = {};

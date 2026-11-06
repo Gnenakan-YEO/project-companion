@@ -40,12 +40,12 @@ function PanierPage() {
     setServerError(null);
     const fd = new FormData(e.currentTarget);
     const parsed = orderSchema.safeParse({
-      customerName: fd.get("customerName"),
-      phone: fd.get("phone"),
-      email: fd.get("email"),
-      commune: fd.get("commune"),
-      address: fd.get("address"),
-      notes: fd.get("notes"),
+      customerName: (fd.get("customerName") ?? ""),
+      phone: (fd.get("phone") ?? ""),
+      email: (fd.get("email") ?? ""),
+      commune: (fd.get("commune") ?? ""),
+      address: (fd.get("address") ?? ""),
+      notes: (fd.get("notes") ?? ""),
       items: cart.items,
     });
     if (!parsed.success) {
