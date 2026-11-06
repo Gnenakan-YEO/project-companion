@@ -78,3 +78,22 @@ export function findProduct(id: string) {
 export function formatFcfa(amount: number) {
   return `${new Intl.NumberFormat("fr-FR").format(amount).replace(/\u202f|\u00a0/g, " ")} FCFA`;
 }
+
+// Conseils d'utilisation par catégorie (affichés sur la fiche produit).
+export const USAGE_TIPS: Record<Product["category"], string[]> = {
+  "Beurre brut": [
+    "Prélevez une petite noisette et réchauffez-la entre vos mains jusqu'à ce qu'elle fonde.",
+    "Peau : appliquez sur une peau propre, de préférence après la douche.",
+    "Cheveux : massez les longueurs et les pointes, en bain d'huile ou en soin sans rinçage.",
+    "Conservez le pot fermé, à l'abri de la chaleur et du soleil.",
+  ],
+  Soins: [
+    "Appliquez en fine couche, aussi souvent que nécessaire.",
+    "Idéal le soir pour un soin nourrissant pendant la nuit.",
+    "Conservez à l'abri de la chaleur pour garder la texture.",
+  ],
+  Hygiène: [
+    "Faites mousser sur une peau mouillée, puis rincez abondamment.",
+    "Laissez sécher le savon sur un porte-savon entre deux utilisations.",
+  ],
+};

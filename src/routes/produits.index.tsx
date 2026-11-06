@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { ProductCard } from "@/components/site/ProductCard";
 import { PRODUCTS } from "@/lib/products";
 
-export const Route = createFileRoute("/produits")({
+export const Route = createFileRoute("/produits/")({
   head: () => ({
     meta: [
       { title: "Nos produits au karité — Maison Karité" },

@@ -10,19 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AProposRouteImport } from './routes/a-propos'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PanierRouteImport } from './routes/panier'
 import { Route as ProduitsRouteImport } from './routes/produits'
+import { Route as AuthenticatedGerantRouteImport } from './routes/_authenticated/gerant'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AProposRoute = AProposRouteImport.update({
   id: '/a-propos',
   path: '/a-propos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -40,40 +52,77 @@ const ProduitsRoute = ProduitsRouteImport.update({
   path: '/produits',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedGerantRoute = AuthenticatedGerantRouteImport.update({
+  id: '/gerant',
+  path: '/gerant',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
   '/produits': typeof ProduitsRoute
+  '/gerant': typeof AuthenticatedGerantRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
   '/produits': typeof ProduitsRoute
+  '/gerant': typeof AuthenticatedGerantRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/a-propos': typeof AProposRoute
+  '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
   '/produits': typeof ProduitsRoute
+  '/_authenticated/gerant': typeof AuthenticatedGerantRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/a-propos' | '/contact' | '/panier' | '/produits'
+  fullPaths:
+    | '/'
+    | '/a-propos'
+    | '/auth'
+    | '/contact'
+    | '/panier'
+    | '/produits'
+    | '/gerant'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/a-propos' | '/contact' | '/panier' | '/produits'
-  id: '__root__' | '/' | '/a-propos' | '/contact' | '/panier' | '/produits'
+  to:
+    | '/'
+    | '/a-propos'
+    | '/auth'
+    | '/contact'
+    | '/panier'
+    | '/produits'
+    | '/gerant'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/a-propos'
+    | '/auth'
+    | '/contact'
+    | '/panier'
+    | '/produits'
+    | '/_authenticated/gerant'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AProposRoute: typeof AProposRoute
+  AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   PanierRoute: typeof PanierRoute
   ProduitsRoute: typeof ProduitsRoute
@@ -88,11 +137,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/a-propos': {
       id: '/a-propos'
       path: '/a-propos'
       fullPath: '/a-propos'
       preLoaderRoute: typeof AProposRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -116,12 +179,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProduitsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/gerant': {
+      id: '/_authenticated/gerant'
+      path: '/gerant'
+      fullPath: '/gerant'
+      preLoaderRoute: typeof AuthenticatedGerantRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedGerantRoute: typeof AuthenticatedGerantRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedGerantRoute: AuthenticatedGerantRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AProposRoute: AProposRoute,
+  AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   PanierRoute: PanierRoute,
   ProduitsRoute: ProduitsRoute,
