@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Leaf, MessageCircle, ShieldCheck, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/site/ProductCard";
+import { Testimonials } from "@/components/site/Testimonials";
 import { PRODUCTS } from "@/lib/products";
 import { SITE, whatsappLink } from "@/lib/site";
 import hero from "@/assets/hero-karite.jpg";
@@ -126,6 +127,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* Professionnels */}
       <section className="container-page py-20">

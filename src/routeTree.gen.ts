@@ -15,8 +15,8 @@ import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PanierRouteImport } from './routes/panier'
-import { Route as ProduitsRouteImport } from './routes/produits'
 import { Route as AuthenticatedGerantRouteImport } from './routes/_authenticated/gerant'
+import { Route as ProduitsIndexRouteImport } from './routes/produits.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -47,15 +47,15 @@ const PanierRoute = PanierRouteImport.update({
   path: '/panier',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProduitsRoute = ProduitsRouteImport.update({
-  id: '/produits',
-  path: '/produits',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedGerantRoute = AuthenticatedGerantRouteImport.update({
   id: '/gerant',
   path: '/gerant',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ProduitsIndexRoute = ProduitsIndexRouteImport.update({
+  id: '/produits/',
+  path: '/produits/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -64,8 +64,8 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
-  '/produits': typeof ProduitsRoute
   '/gerant': typeof AuthenticatedGerantRoute
+  '/produits/': typeof ProduitsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -73,8 +73,8 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
-  '/produits': typeof ProduitsRoute
   '/gerant': typeof AuthenticatedGerantRoute
+  '/produits': typeof ProduitsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -84,8 +84,8 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/panier': typeof PanierRoute
-  '/produits': typeof ProduitsRoute
   '/_authenticated/gerant': typeof AuthenticatedGerantRoute
+  '/produits/': typeof ProduitsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -95,8 +95,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/panier'
-    | '/produits'
     | '/gerant'
+    | '/produits/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -104,8 +104,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/panier'
-    | '/produits'
     | '/gerant'
+    | '/produits'
   id:
     | '__root__'
     | '/'
@@ -114,8 +114,8 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/panier'
-    | '/produits'
     | '/_authenticated/gerant'
+    | '/produits/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -125,7 +125,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   PanierRoute: typeof PanierRoute
-  ProduitsRoute: typeof ProduitsRoute
+  ProduitsIndexRoute: typeof ProduitsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,19 +172,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PanierRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/produits': {
-      id: '/produits'
-      path: '/produits'
-      fullPath: '/produits'
-      preLoaderRoute: typeof ProduitsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated/gerant': {
       id: '/_authenticated/gerant'
       path: '/gerant'
       fullPath: '/gerant'
       preLoaderRoute: typeof AuthenticatedGerantRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/produits/': {
+      id: '/produits/'
+      path: '/produits'
+      fullPath: '/produits/'
+      preLoaderRoute: typeof ProduitsIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -207,7 +207,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   PanierRoute: PanierRoute,
-  ProduitsRoute: ProduitsRoute,
+  ProduitsIndexRoute: ProduitsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
