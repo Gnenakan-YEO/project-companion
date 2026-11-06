@@ -27,6 +27,8 @@ export function SiteFooter() {
             <li><Link to="/panier" className="hover:text-gold">Mon panier</Link></li>
             <li><Link to="/a-propos" className="hover:text-gold">À propos</Link></li>
             <li><Link to="/contact" className="hover:text-gold">Contact & devis</Link></li>
+            <li><Link to="/faq" className="hover:text-gold">FAQ</Link></li>
+            <li><Link to="/gerant" className="hover:text-gold">Espace gérant</Link></li>
           </ul>
         </div>
         <div>
