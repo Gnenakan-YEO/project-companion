@@ -77,7 +77,7 @@ function ProduitsPage() {
       {list.length === 0 ? (
         <p className="mt-16 text-center text-muted-foreground">Aucun produit ne correspond à votre recherche.</p>
       ) : (
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {list.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}

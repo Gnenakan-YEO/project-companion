@@ -28,12 +28,12 @@ export const LINES: Record<ProductLine, LineInfo> = {
     subtitle: "Pommade nourrissante au beurre de karité",
     tagline: "La nature au service de votre peau",
     longDescription:
-      "Formulée à base de beurre de karité brut, d'huiles végétales nobles et de vitamine E, cette pommade 100 % naturelle nourrit en profondeur, apaise et protège tous types de peaux — même les plus sensibles.",
+      "Formulée à base de beurre de karité brut, d'huiles végétales nobles et de vitamine E, cette pommade 100 % naturelle nourrit en profondeur, apaise et protège tous types de peaux — même les plus sensibles.",
     benefits: [
       "Nourrit intensément les peaux sèches",
       "Apaise et régénère la barrière cutanée",
       "Favorise la cicatrisation",
-      "Sans eau ajoutée — 100 % actifs naturels",
+      "Sans eau ajoutée — 100 % actifs naturels",
       "Convient à tous types de peaux",
     ],
     colors: [
@@ -51,7 +51,7 @@ export const LINES: Record<ProductLine, LineInfo> = {
       "Protection longue durée de la barrière cutanée",
       "Nourrit intensément les peaux très sèches",
       "Idéal coudes, talons, zones rugueuses",
-      "100 % actifs naturels, sans eau ajoutée",
+      "100 % actifs naturels, sans eau ajoutée",
     ],
     colors: [
       { label: "Couvercle", value: "Doré" },
@@ -72,7 +72,7 @@ export const PRODUCTS: Product[] = [
     size: "Pot 100 g",
     priceFcfa: 5000,
     category: "SHINE",
-    description: "Pommade nourrissante au beurre de karité, 100 % naturelle, pour tous types de peaux.",
+    description: "Pommade nourrissante au beurre de karité, 100 % naturelle, pour tous types de peaux.",
     image: shine,
     weight: "100 g",
     dimensions: DIM_100,
