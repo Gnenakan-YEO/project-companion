@@ -24,14 +24,14 @@ export const Route = createFileRoute("/")({
 });
 
 const ENGAGEMENTS = [
-  { icon: Leaf, title: "100 % naturel", text: "Beurre brut non raffiné, sans additif ni conservateur." },
+  { icon: Leaf, title: "100 % naturel", text: "Beurre de karité brut, huiles végétales et vitamine E, sans eau ajoutée." },
   { icon: ShieldCheck, title: "Qualité contrôlée", text: "Chaque lot est vérifié avant conditionnement." },
   { icon: Truck, title: "Livraison à Abidjan", text: "Livré chez vous, dans toutes les communes." },
   { icon: MessageCircle, title: "Conseil personnalisé", text: "Une question ? Écrivez-nous sur WhatsApp." },
 ];
 
 function Index() {
-  const featured = ["brut-250", "fouette-coco", "savon-karite"].map((id) => PRODUCTS.find((p) => p.id === id)!);
+  const featured = PRODUCTS;
   return (
     <>
       {/* Bandeau d'accueil */}
@@ -90,13 +90,13 @@ function Index() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Nos produits</p>
-            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">Les incontournables</h2>
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">SHINE et SHINE PROTECTION</h2>
           </div>
           <Link to="/produits" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
             Tout le catalogue <ArrowRight className="size-4" aria-hidden />
           </Link>
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}

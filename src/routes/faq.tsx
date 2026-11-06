@@ -19,7 +19,7 @@ const FAQ = [
   { q: "Comment passer commande ?", a: "Ajoutez vos produits au panier puis remplissez vos informations de livraison. Vous pouvez aussi commander directement sur WhatsApp." },
   { q: "Comment se passe le paiement ?", a: "Il n'y a pas de paiement en ligne. Après votre commande, notre équipe vous appelle pour confirmer la livraison et le mode de paiement." },
   { q: "Livrez-vous partout à Abidjan ?", a: "Oui, nous livrons dans les communes d'Abidjan. Pour une livraison hors d'Abidjan, choisissez « Autre » dans le formulaire et nous vous contacterons." },
-  { q: "Quelle est la différence entre le beurre brut et le beurre fouetté ?", a: "Le beurre brut est pur et non raffiné, avec une texture ferme. Le beurre fouetté est travaillé pour obtenir une texture légère, plus facile à appliquer." },
+  { q: "Quelle est la différence entre SHINE et SHINE PROTECTION ?", a: "SHINE est une pommade nourrissante qui convient à tous types de peaux, même sensibles. SHINE PROTECTION est enrichie en vaseline pour protéger durablement les peaux très sèches et les zones rugueuses (coudes, talons)." },
   { q: "Le beurre de karité convient-il aux cheveux ?", a: "Oui. Il nourrit les longueurs et les pointes sèches. Appliquez une petite quantité fondue entre les mains." },
   { q: "Pourquoi mon beurre change-t-il de texture ?", a: "C'est normal : le karité naturel ramollit à la chaleur et durcit au frais. Sa qualité n'est pas modifiée." },
   { q: "Comment conserver le beurre de karité ?", a: "Gardez le pot bien fermé, à l'abri de la chaleur et de la lumière directe." },
